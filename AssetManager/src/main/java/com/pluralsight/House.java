@@ -6,7 +6,8 @@ public class House extends Asset {
     private int squareFoot;
     private int lotSize;
 
-    public House(String description, String dateAcquired, double originalCost, String address, int condition, int squareFoot, int lotSize) {
+    public House(String description, String dateAcquired, double originalCost,
+                 String address, int condition, int squareFoot, int lotSize) {
         super(description, dateAcquired, originalCost);
         this.address = address;
         this.condition = condition;
@@ -48,14 +49,13 @@ public class House extends Asset {
 
     @Override
     public double getValue() {
-        double baseRate;
+        double valuePerSqFt = 0;
         switch (condition) {
-            case 1: baseRate = 180.00; break;
-            case 2: baseRate = 130.00; break;
-            case 3: baseRate = 90.00; break;
-            case 4: baseRate = 80.00; break;
-            default: baseRate = 0.00; break;
+            case 1: valuePerSqFt = 180.00; break;
+            case 2: valuePerSqFt = 130.00; break;
+            case 3: valuePerSqFt = 90.00; break;
+            case 4: valuePerSqFt = 80.00; break;
         }
-        return (squareFoot * baseRate) + (lotSize * 0.25);
+        return (valuePerSqFt * squareFoot) + (0.25 * lotSize);
     }
 }
